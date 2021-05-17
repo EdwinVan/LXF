@@ -9,9 +9,12 @@
         <result column="credit" property="credit" jdbcType="DOUBLE"/>
         <result column="unit" property="unit" jdbcType="VARCHAR"/>
         <result column="teacher" property="teacher" jdbcType="VARCHAR"/>
+        <result column="team" property="team" jdbcType="VARCHAR"/>
+        <result column="goal" property="goal" jdbcType="VARCHAR"/>
+        <result column="textbook" property="textbook" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-        uid,name,introduction,kind,credit,unit,teacher
+        uid,name,introduction,kind,credit,unit,teacher,team,goal,textbook
     </sql>
 
     <select id="findAllCourses" resultType="com.example.second.entity.Course">
@@ -45,7 +48,7 @@
     </delete>
 
     <insert id="insert" parameterType="com.example.second.entity.Course">
-        insert into course (uid,name,introduction,kind,credit,unit,teacher)
+        insert into course (uid,name,introduction,kind,credit,unit,teacher,team,goal,textbook)
         values (
                 #{uid,jdbcType=BIGINT},
                 #{name,jdbcType=VARCHAR},
@@ -54,6 +57,9 @@
                 #{credit,jdbcType=DOUBLE},
                 #{unit,jdbcType=VARCHAR},
                 #{teacher,jdbcType=VARCHAR},
+                #{team,jdbcType=VARCHAR},
+                #{goal,jdbcType=VARCHAR},
+                #{textbook,jdbcType=VARCHAR},
                 )
     </insert>
     <insert id="addCourse" parameterType="com.example.second.entity.Course">
@@ -80,7 +86,15 @@
             <if test="teacher != null">
                 `teacher`,
             </if>
-
+            <if test="team != null">
+                `team`,
+            </if>
+            <if test="goal != null">
+                `goal`,
+            </if>
+            <if test="textbook != null">
+                `textbook`,
+            </if>
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -106,6 +120,15 @@
             <if test="teacher != null">
                 #{teacher,jdbcType=VARCHAR},
             </if>
+            <if test="goal != null">
+                #{goal,jdbcType=VARCHAR},
+            </if>
+            <if test="team != null">
+                #{team,jdbcType=VARCHAR},
+            </if>
+            <if test="textbook != null">
+                #{textbook,jdbcType=VARCHAR},
+            </if>
 
         </trim>
     </insert>
@@ -119,6 +142,9 @@
         `credit` = #{credit,jdbcType=DOUBLE},
         `unit` = #{unit,jdbcType=VARCHAR},
         `teacher` = #{teacher,jdbcType=VARCHAR}
+        `goal` = #{goal,jdbcType=VARCHAR},
+        `team` = #{team,jdbcType=VARCHAR},
+        `textbook` = #{textbook,jdbcType=VARCHAR}
         where `uid` = #{uid,jdbcType=BIGINT}
     </update>
 </mapper>

@@ -36,6 +36,7 @@
         from student
         where uid = #{uid,jdbcType=BIGINT}
     </select>
+
     <delete id="deleteStudentById" parameterType="java.lang.Long">
         delete from student
         where uid = #{uid,jdbcType=BIGINT}

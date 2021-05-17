@@ -16,6 +16,12 @@ public class Course {
 
     private String teacher;
 
+    private String goal;
+
+    private String team;
+
+    private String textbook;
+
     public Long getUid() {
         return uid;
     }
@@ -55,4 +61,16 @@ public class Course {
     public String getTeacher() { return teacher; }
 
     public void setTeacher(String teacher) { this.teacher = teacher; }
+
+    public String getGoal() { return goal; }
+
+    public void setGoal(String goal) { this.goal = goal; }
+
+    public String getTeam() { return team; }
+
+    public void setTeam(String team) { this.team = team; }
+
+    public String getTextbook() { return textbook; }
+
+    public void setTextbook(String textbook) { this.textbook = textbook; }
 }

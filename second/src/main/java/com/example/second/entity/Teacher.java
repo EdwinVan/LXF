@@ -72,7 +72,6 @@ public class Teacher {
     private String evaluate;
 
 
-
     public Long getUid() {
         return uid;
     }

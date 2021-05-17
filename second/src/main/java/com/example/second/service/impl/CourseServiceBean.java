@@ -45,6 +45,15 @@ public class CourseServiceBean implements CourseService {
         if (course.getTeacher() == null) {
             errors.add("授课老师不能为空");
         }
+        if (course.getTeam() == null) {
+            errors.add("教学团队不能为空");
+        }
+        if (course.getGoal() == null) {
+            errors.add("教学目标不能为空");
+        }
+        if (course.getTextbook() == null) {
+            errors.add("著作与教材不能为空");
+        }
 
         return errors;
     }
