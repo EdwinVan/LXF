@@ -59,7 +59,7 @@
                 #{teacher,jdbcType=VARCHAR},
                 #{team,jdbcType=VARCHAR},
                 #{goal,jdbcType=VARCHAR},
-                #{textbook,jdbcType=VARCHAR},
+                #{textbook,jdbcType=VARCHAR}
                 )
     </insert>
     <insert id="addCourse" parameterType="com.example.second.entity.Course">
@@ -141,7 +141,7 @@
         `kind` = #{kind,jdbcType=VARCHAR},
         `credit` = #{credit,jdbcType=DOUBLE},
         `unit` = #{unit,jdbcType=VARCHAR},
-        `teacher` = #{teacher,jdbcType=VARCHAR}
+        `teacher` = #{teacher,jdbcType=VARCHAR},
         `goal` = #{goal,jdbcType=VARCHAR},
         `team` = #{team,jdbcType=VARCHAR},
         `textbook` = #{textbook,jdbcType=VARCHAR}

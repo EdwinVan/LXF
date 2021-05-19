@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 12/05/2021 01:41:38
+ Date: 17/05/2021 19:16:04
 */
 
 SET NAMES utf8mb4;
@@ -24,20 +24,23 @@ DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course`  (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `introduction` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `introduction` varchar(1500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `kind` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `credit` double(10, 2) NULL DEFAULT NULL,
   `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `teacher` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `goal` varchar(1500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `team` varchar(1500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `textbook` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`uid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES (1, '马克思主义基本原理概论', '本课程主要对学生进行唯物主义哲学的基本原理教育，使学生掌握马克思主义哲学的基本观点、立场和方法；帮助学生掌握马克思主义的世界观和方法论，帮助学生树立正确的人生观和价值观；培养学生运用马克思主义哲学的观点和方法去分析问题、解决问题的能力，提高学生的政治理论素质和思维水平；为学生正确理解马克思主义，确立社会主义信念自觉坚持党的路线、方针和政策打下坚实的基础。', '通识选修课', 3.24, '马克思学院', '李三');
-INSERT INTO `course` VALUES (2, '中国近现代史纲要', '《中国近现代史纲要》这门课程主要介绍了近现代时期中国人民反对外国侵略斗争，探索国家出路，改革浪潮中的大事变，中国革命的新道路，中华民族的抗体战争，改革开放与现代化建设新时期等内容。\r\n《中国近现代史纲要》这门课程主要介绍了近现代时期中国人民反对外国侵略斗争，探索国家出路，改革浪潮中的大事变，中国革命的新道路，中华民族的抗体战争，改革开放与现代化建设新时期等内容。', '必修课', 4.00, '历史学院', '熊大');
-INSERT INTO `course` VALUES (3, '操作系统', '《操作系统》是计算机应用技术专业开设的专业基础课，是培养学生具备计算机操作系统的基本理论、基本原理和应用能力的一门必修课，是学习其它后续专业课程的基础。本课程主要培养学生理解计算机操作系统的基本理论及原理，提高学生分析和解决软件系统问题的能力，是一门对学生操作系统相关知识的学习及应用能力培养起到关键、基础作用的课程。', '通识选修课', 5.00, '计算机与信息科学学院', '李白');
+INSERT INTO `course` VALUES (1, '马克思主义基本原理概论', '本课程主要对学生进行唯物主义哲学的基本原理教育，使学生掌握马克思主义哲学的基本观点、立场和方法；帮助学生掌握马克思主义的世界观和方法论，帮助学生树立正确的人生观和价值观；培养学生运用马克思主义哲学的观点和方法去分析问题、解决问题的能力，提高学生的政治理论素质和思维水平；为学生正确理解马克思主义，确立社会主义信念自觉坚持党的路线、方针和政策打下坚实的基础。', '通识选修课', 3.24, '马克思学院', '李三', '本课程主要对学生进行', '教学队伍6人全部具有博士学位。具有高级职称者4人， 40岁至60岁1人，30岁至40岁4人，20岁至30岁1人。年龄结构合理，发展平稳且可持续性好，具有很强的战斗力，形成了骨干教师承担教学重任，青年教师在梯队中培养锻炼的格局。同时还请高年级优秀的硕士研究生参加课程辅导，从而使得辅导教师与学生的师生比例达到学校的要求。', '《马克思主义基本原理概论》');
+INSERT INTO `course` VALUES (2, '中国近现代史纲要', '《中国近现代史纲要》这门课程主要介绍了近现代时期中国人民反对外国侵略斗争，探索国家出路，改革浪潮中的大事变，中国革命的新道路，中华民族的抗体战争，改革开放与现代化建设新时期等内容。\r\n《中国近现代史纲要》这门课程主要介绍了近现代时期中国人民反对外国侵略斗争，探索国家出路，改革浪潮中的大事变，中国革命的新道路，中华民族的抗体战争，改革开放与现代化建设新时期等内容。', '必修课', 4.00, '历史学院', '熊大', NULL, NULL, NULL);
+INSERT INTO `course` VALUES (3, '操作系统', '《操作系统》是计算机应用技术专业开设的专业基础课，是培养学生具备计算机操作系统的基本理论、基本原理和应用能力的一门必修课，是学习其它后续专业课程的基础。本课程主要培养学生理解计算机操作系统的基本理论及原理，提高学生分析和解决软件系统问题的能力，是一门对学生操作系统相关知识的学习及应用能力培养起到关键、基础作用的课程。', '通识选修课', 5.00, '计算机与信息科学学院', '李白', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for menu
@@ -65,6 +68,7 @@ INSERT INTO `menu` VALUES (6, '/home', 1, 1, '权限管理', 'Home');
 INSERT INTO `menu` VALUES (7, '/user/**', 6, 1, '用户管理', 'UserManage');
 INSERT INTO `menu` VALUES (8, '/teacher/**', 2, 1, '教师管理', 'Teacher');
 INSERT INTO `menu` VALUES (9, '/course/**', 2, 1, '课程管理', 'Course');
+INSERT INTO `menu` VALUES (10, '/index', 1, 1, '界面', 'Index');
 
 -- ----------------------------
 -- Table structure for menu_role
@@ -86,6 +90,7 @@ INSERT INTO `menu_role` VALUES (3, 5, 3);
 INSERT INTO `menu_role` VALUES (4, 7, 2);
 INSERT INTO `menu_role` VALUES (5, 8, 3);
 INSERT INTO `menu_role` VALUES (6, 9, 3);
+INSERT INTO `menu_role` VALUES (7, 10, 3);
 
 -- ----------------------------
 -- Table structure for role
@@ -96,7 +101,7 @@ CREATE TABLE `role`  (
   `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nameZh` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role
@@ -115,7 +120,7 @@ CREATE TABLE `student`  (
   `age` int(11) NULL DEFAULT NULL,
   `sex` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`uid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of student
@@ -134,7 +139,7 @@ CREATE TABLE `student_copy`  (
   `age` int(11) NULL DEFAULT NULL,
   `sex` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`uid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of student_copy
@@ -152,7 +157,7 @@ CREATE TABLE `student_count`  (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `count` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of student_count
@@ -186,7 +191,7 @@ CREATE TABLE `teacher`  (
   `ability` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `evaluate` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
   PRIMARY KEY (`uid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of teacher
@@ -210,7 +215,7 @@ CREATE TABLE `user`  (
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
@@ -232,7 +237,7 @@ CREATE TABLE `user_role`  (
   `uid` int(11) NULL DEFAULT NULL,
   `rid` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_role
