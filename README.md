@@ -4,7 +4,7 @@ LXF = Spring Boot后端 + Vue管理员前端 + Vue用户前端
 开发人员：梁爽、谢钲钲、范玉杰
 
 
-# Git常用命令：
+## Git常用命令：
 
 ```
 git pull origin master --allow-unrelated-histories 
