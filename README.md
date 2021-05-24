@@ -1,10 +1,10 @@
 # LXF
-一个课程管理系统
-LXF = Spring Boot后端 + Vue管理员前端 + Vue用户前端
-开发人员：梁爽、谢钲钲、范玉杰
+一个课程管理系统  
+LXF = Spring Boot后端 + Vue前端 + MySql数据库  
+开发人员：**梁爽、谢钲钲、范玉杰**
 
 
-# Git常用命令：
+## Git常用命令：
 
 ```
 git pull origin master --allow-unrelated-histories 
@@ -57,5 +57,10 @@ git branch -D 分支名
 范玉杰准备完毕  
 2021/05/24  
 
-## 提交冲突
+
+# 提交冲突
 范玉杰提交
+
+# 提交冲突
+梁爽提交
+
