@@ -3,12 +3,15 @@ A course management system
 
 
 
+# 阶段一  
 
-# 2021/05/24
 >开始进行Git合作开发  
-ShuangLiang
+梁爽准备完毕  
+2021/05/24
 
-# 2021/05/24
+
 >开始进行Git合作开发  
-YujieFan
+范玉杰准备完毕  
+2021/05/24  
+
 
