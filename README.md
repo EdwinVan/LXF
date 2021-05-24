@@ -1,6 +1,6 @@
 # LXF
 一个课程管理系统
-LXF = Spring Boot后端 + Vue管理员前端 + Vue用户前端  
+LXF = Spring Boot后端 + Vue前端 + MySql数据库  
 开发人员：梁爽、谢钲钲、范玉杰
 
 
