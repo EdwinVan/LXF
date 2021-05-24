@@ -7,6 +7,9 @@ LXF = Spring Boot后端 + Vue前端 + MySql数据库
 ## Git常用命令：
 
 ```
+git remote add origin git@github.com:EdwinVan/LXF.git
+
+
 git pull origin master --allow-unrelated-histories 
 // 把本地仓库的变化连接到远程仓库主分支，即让本地新建的库和远程库进行同步(建议每次更新代码前都pull一下)
 
@@ -62,6 +65,13 @@ git branch -D 分支名
 范玉杰提交
 
 # 提交冲突
+<<<<<<< HEAD
 梁爽提交（test）
 
 # 范玉杰提交 2021/5/24 10：36
+=======
+梁爽提交
+
+#test connect
+
+# fyj 晚
