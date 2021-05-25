@@ -8,6 +8,8 @@ import Login from '../views/Login'
 import Index from '../views/public/Index'
 import Main from '../views/public/Main'
 import Book from '../views/Book'
+import Announcement from '../views/Announcement'
+
 
 Vue.use(VueRouter);
 
@@ -58,6 +60,11 @@ const routes = [
         path: '/book',
         name: '管理书籍',
         component: Book
+      },
+      {
+        path: '/announcement',
+        name: '管理公告',
+        component: Announcement
       }
     ]
   },

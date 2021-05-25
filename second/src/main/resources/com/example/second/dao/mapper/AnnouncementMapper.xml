@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.second.dao.AnnouncementDao">
+    <resultMap id="BaseResultMap" type="com.example.second.entity.Announcement">
+        <id column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="content" property="name" jdbcType="VARCHAR"/>
+        <result column="time" property="time" jdbcType="VARCHAR"/>
+        <result column="publisher" property="publisher" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        uid,content,time,publisher
+    </sql>
+
+    <select id="findAllAnnouncements" resultType="com.example.second.entity.Announcement">
+        select * from announcement
+    </select>
+
+    <select id="findAnnouncementByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from announcement where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteAnnouncementsByIds">
+        delete from announcement where uid in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getCountAnnouncements" resultType="java.lang.Integer">
+        select count(uid) as count from announcement
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from announcement
+        where uid = #{uid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteAnnouncementById" parameterType="java.lang.Long">
+        delete from announcement
+        where uid = #{uid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.second.entity.Announcement">
+        insert into announcement (uid,name,introduction,kind,credit,unit,teacher,team,goal,textannouncement)
+        values (
+                #{uid,jdbcType=BIGINT},
+                #{content,jdbcType=VARCHAR},
+                #{time,jdbcType=VARCHAR},
+                #{publisher,jdbcType=VARCHAR}
+                )
+    </insert>
+    <insert id="addAnnouncement" parameterType="com.example.second.entity.Announcement">
+        insert into announcement
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                `uid`,
+            </if>
+            <if test="content != null">
+                `content`,
+            </if>
+            <if test="time != null">
+                `time`,
+            </if>
+            <if test="publisher != null">
+                `publisher`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=VARCHAR},
+            </if>
+            <if test="publisher != null">
+                #{publisher,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateAnnouncement" parameterType="com.example.second.entity.Announcement">
+
+        update announcement
+        set `content` = #{content,jdbcType=VARCHAR},
+        `time` = #{time,jdbcType=VARCHAR},
+        `publisher` = #{publisher,jdbcType=VARCHAR}
+        where `uid` = #{uid,jdbcType=BIGINT}
+    </update>
+</mapper>
