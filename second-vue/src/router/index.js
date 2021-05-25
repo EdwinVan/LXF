@@ -7,6 +7,7 @@ import Home from '../views/Home'
 import Login from '../views/Login'
 import Index from '../views/public/Index'
 import Main from '../views/public/Main'
+import Book from '../views/Book'
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const routes = [
         path: '/course',
         name: '管理课程',
         component: Course
+      },
+      {
+        path: '/book',
+        name: '管理书籍',
+        component: Book
       }
     ]
   },
