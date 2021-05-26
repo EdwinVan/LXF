@@ -13,10 +13,8 @@
         <el-col :span="14">
           <div id="top-right">
             <el-button type="text" class="top-button"><a>关于我们</a></el-button>
-            <el-button type="text" class="top-button"><a>关于作者</a></el-button>
             <el-divider direction="vertical"></el-divider>
-            <el-button type="text" class="top-button" ><a @click="currents('/#/')">登录</a></el-button>
-          </div>
+            <el-button type="text" class="top-button" ><a @click="currents('/login')">登录</a></el-button>          </div>
         </el-col>
       </el-row>
     </el-header>
@@ -36,14 +34,11 @@
           <el-menu-item index="news">通知公告</el-menu-item>
         </el-menu>
       </div>
-
       <div class="mainContent">
         <div id="leftAside">
           <div class="leftAsideTop">
             通知公告
           </div>
-
-
         </div>
         <div class="mainRight">
           <div id="section-0" style="height: 300px">
@@ -58,19 +53,14 @@
               </div>
             </div>
             <div class="mainRightContent">
-
             </div>
           </div>
-
-
         </div>
       </div>
-
     </el-main>
-
     <el-footer class="footer" style="height: 120px">
       <p>项目参与人：梁爽 范玉杰 谢钲钲</p>
-      <p>联系方式：123456</p>
+      <p>联系方式：kechengsheji@cqnu.edu.stu.com</p>
     </el-footer>
   </el-container>
 </template>

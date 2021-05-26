@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.second.dao.AboutDao">
+    <resultMap id="BaseResultMap" type="com.example.second.entity.About">
+        <id column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="number" property="number" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        uid,name,number,school,phone,email
+    </sql>
+
+    <select id="findAllAbouts" resultType="com.example.second.entity.About">
+        select * from about
+    </select>
+
+    <select id="findAboutByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from about where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteAboutsByIds">
+        delete from about where uid in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getCountAbouts" resultType="java.lang.Integer">
+        select count(uid) as count from about
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from about
+        where uid = #{uid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteAboutById" parameterType="java.lang.Long">
+        delete from about
+        where uid = #{uid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.second.entity.About">
+        insert into about (uid,name,number,school,phone,email)
+        values (
+                #{uid,jdbcType=BIGINT},
+                #{name,jdbcType=VARCHAR},
+                #{number ,jdbcType=VARCHAR},
+                #{school,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR}
+                )
+    </insert>
+    <insert id="addAbout" parameterType="com.example.second.entity.About">
+        insert into about
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                `uid`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="number != null">
+                `number`,
+            </if>
+            <if test="school != null">
+                `school`,
+            </if>
+            <if test="phone != null">
+                `phone`,
+            </if>
+            <if test="email != null">
+                `email`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="school != null">
+                #{school,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateAbout" parameterType="com.example.second.entity.About">
+
+        update about
+        set `name` = #{aboutname,jdbcType=VARCHAR},
+        `number` = #{number,jdbcType=VARCHAR},
+        `school` = #{school,jdbcType=VARCHAR},
+        `phone` = #{phone,jdbcType=VARCHAR},
+        `email` = #{email,jdbcType=VARCHAR}
+        where `uid` = #{uid,jdbcType=BIGINT}
+    </update>
+</mapper>

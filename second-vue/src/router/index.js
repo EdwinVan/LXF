@@ -9,12 +9,14 @@ import Index from '../views/public/Index'
 import Main from '../views/public/Main'
 import Book from '../views/Book'
 import Announcement from '../views/Announcement'
+import About from '../views/About'
 
 import Introduction from "../views/public/Introduction";
 import Target from "../views/public/target";
 import Team from "../views/public/team";
 import Textbook from "../views/public/textbook";
 import News from "../views/public/news";
+import Top from "../views/public/top";
 
 
 
@@ -23,7 +25,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Main',
+    name: 'Main/',
     component: Main,
     hidden: true,
   },
@@ -38,6 +40,16 @@ const routes = [
     name: 'Index',
     component: Index,
   },
+  {
+    path: '/top',
+    name: 'Top',
+    component: Top,
+  },
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   component: About,
+  // },
   {
     path: '/introduction',
     name: 'Introduction',
@@ -59,7 +71,7 @@ const routes = [
     component: Textbook,
   },
   {
-    path: '/News',
+    path: '/news',
     name: 'News',
     component: News,
   },
@@ -94,14 +106,17 @@ const routes = [
         component: Book
       },
       {
+        path: '/about',
+        name: '管理开发人员',
+        component: About
+      },
+      {
         path: '/announcement',
         name: '管理公告',
         component: Announcement
       }
     ]
   },
-
-
 ]
 
 const router = new VueRouter({
