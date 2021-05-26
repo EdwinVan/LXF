@@ -4,6 +4,16 @@ package com.example.second.entity;
 public class Book {
     private Long uid;
 
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    private Long cid;
+
     public Long getUid() {
         return uid;
     }

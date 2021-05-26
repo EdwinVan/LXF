@@ -12,10 +12,9 @@
           </el-col>
           <el-col :span="14">
             <div id="top-right">
-              <el-button type="text" class="top-button"><a>关于我们</a></el-button>
-              <el-button type="text" class="top-button"><a>关于作者</a></el-button>
+              <el-button type="text" class="top-button" @click="currents('/top')"><a>关于我们</a></el-button>
               <el-divider direction="vertical"></el-divider>
-              <el-button type="text" class="top-button" ><a @click="currents('/#/')">登录</a></el-button>
+              <el-button type="text" class="top-button" ><a @click="currents('/login')">登录</a></el-button>
             </div>
           </el-col>
         </el-row>
@@ -118,7 +117,7 @@
 
     <el-footer class="footer" style="height: 120px">
       <p>项目参与人：梁爽 范玉杰 谢钲钲</p>
-      <p>联系方式：123456</p>
+      <p>联系方式：kechengsheji@cqnu.edu.stu.com</p>
     </el-footer>
   </el-container>
 </template>
@@ -156,68 +155,65 @@ export default {
     }
   },
   methods: {
-    gotolink(){
-      this.$router.replace('/login')
-    },
     handleSelect(index){
       this.$router.push(index);
     },
     currents(current){
       this.$router.push(current);
     },
-    handleSuccess(file) {
-      const filename = file.name;
-      this.$message({
-        message: '文件上传成功！',
-        type: 'success'
-      });
-    },
-    searchCourseByName() {
-      if (this.courseName !== '') {
-        this.$axios.get("/course/findCourseByName?name=" + this.courseName).then((resp) => {
-          this.courses = resp.data;
-        }).catch((error) => {
-          this.$message({
-            type: 'error',
-            message: "查询失败，原因是" + error.data.message
-          });
-        })
-      }
-    },
-    deleteCourses() {
-      this.$confirm('此操作将永久删除课程, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        let ids = '?';
-        this.multipleSelection.forEach((item) => {
-          ids += 'ids=' + item.uid + '&'
-        });
-        this.$axios.post("/course/deleteCoursesByIds" + ids).then((resp) => {
-          if (resp) {
-            this.findAllCourses();
-            this.$message.success("删除成功！");
-          }
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
-      });
-    },
+    // handleSuccess(file) {
+    //   const filename = file.name;
+    //   this.$message({
+    //     message: '文件上传成功！',
+    //     type: 'success'
+    //   });
+    // },
+    // searchCourseByName() {
+    //   if (this.courseName !== '') {
+    //     this.$axios.get("/course/findCourseByName?name=" + this.courseName).then((resp) => {
+    //       this.courses = resp.data;
+    //     }).catch((error) => {
+    //       this.$message({
+    //         type: 'error',
+    //         message: "查询失败，原因是" + error.data.message
+    //       });
+    //     })
+    //   }
+    // },
+    // deleteCourses() {
+    //   this.$confirm('此操作将永久删除课程, 是否继续?', '提示', {
+    //     confirmButtonText: '确定',
+    //     cancelButtonText: '取消',
+    //     type: 'warning'
+    //   }).then(() => {
+    //     let ids = '?';
+    //     this.multipleSelection.forEach((item) => {
+    //       ids += 'ids=' + item.uid + '&'
+    //     });
+    //     this.$axios.post("/course/deleteCoursesByIds" + ids).then((resp) => {
+    //       if (resp) {
+    //         this.findAllCourses();
+    //         this.$message.success("删除成功！");
+    //       }
+    //     })
+    //   }).catch(() => {
+    //     this.$message({
+    //       type: 'info',
+    //       message: '已取消删除'
+    //     });
+    //   });
+    // },
     handleSelectionChange(val) {
       this.multipleSelection = val;
       console.log(val)
     },
-    submitCourse () {
-      if (this.dialogStatus === 'addCourse'){
-        this.addCourse();
-      } else if(this.dialogStatus === "editCourse") {
-        this.editCourse();
-      }
-    },
+    // submitCourse () {
+    //   if (this.dialogStatus === 'addCourse'){
+    //     this.addCourse();
+    //   } else if(this.dialogStatus === "editCourse") {
+    //     this.editCourse();
+    //   }
+    // },
     findAllCourses() {
       this.$axios.get("/course/findAllCourses")
           .then((res) => {
@@ -230,82 +226,82 @@ export default {
             });
           });
     },
-    handleEdit(row) {
-      this.dialogFormVisible = true;
-      this.dialogStatus = "editCourse";
-      this.form.uid = row.uid;
-      this.form.name = row.name;
-      this.form.introduction = row.introduction;
-      this.form.kind = row.kind;
-      this.form.credit = row.credit;
-      this.form.unit = row.unit;
-      this.form.teacher = row.teacher;
-    },
-    handleDelete(row) {
-      this.$confirm('此操作将永久删除该课程, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.$axios.post("/course/deleteCourse?uid=" + row.uid).then((resp) => {
-          this.$message.success("删除成功!")
-          this.findAllCourses();
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
-      });
-    },
-    showDialog() {
-      this.form.uid = '';
-      this.form.name = '';
-      this.form.introduction = '';
-      this.form.kind = '';
-      this.form.credit = '';
-      this.form.unit = '';
-      this.form.teacher = '';
-
-      this.dialogFormVisible = true;
-      this.dialogStatus = "addCourse";
-    },
-    addCourse () {
-      this.$refs.course.validate((valid) => {
-        if (valid) {
-          this.$axios.post("/course/addCourse",this.form).then( (resp)=>{
-            if (resp) {
-              this.dialogFormVisible = false;
-              this.$message.success("添加成功！");
-              this.findAllCourses();
-            }
-          }).catch((error)=>{
-            this.$message({
-              message: '添加数据失败，原因是'+error.data.message,
-              type: 'error'
-            })
-          })
-        } else {
-          this.$message({
-            message: '请输入所有字段',
-            type: 'error'
-          })
-          return false;
-        }
-      });
-    },
-    editCourse () {
-      this.$axios.post("/course/updateCourse",this.form).then( (resp)=>{
-        this.dialogFormVisible = false;
-        this.$message.success("修改成功!");
-        this.findAllCourses();
-      }).catch( (error)=> {
-        this.$message({
-          message: '数据更新失败，原因是'+error.data.message,
-          type: 'error'
-        })
-      })
-    }
+    // handleEdit(row) {
+    //   this.dialogFormVisible = true;
+    //   this.dialogStatus = "editCourse";
+    //   this.form.uid = row.uid;
+    //   this.form.name = row.name;
+    //   this.form.introduction = row.introduction;
+    //   this.form.kind = row.kind;
+    //   this.form.credit = row.credit;
+    //   this.form.unit = row.unit;
+    //   this.form.teacher = row.teacher;
+    // },
+    // handleDelete(row) {
+    //   this.$confirm('此操作将永久删除该课程, 是否继续?', '提示', {
+    //     confirmButtonText: '确定',
+    //     cancelButtonText: '取消',
+    //     type: 'warning'
+    //   }).then(() => {
+    //     this.$axios.post("/course/deleteCourse?uid=" + row.uid).then((resp) => {
+    //       this.$message.success("删除成功!")
+    //       this.findAllCourses();
+    //     })
+    //   }).catch(() => {
+    //     this.$message({
+    //       type: 'info',
+    //       message: '已取消删除'
+    //     });
+    //   });
+    // },
+    // showDialog() {
+    //   this.form.uid = '';
+    //   this.form.name = '';
+    //   this.form.introduction = '';
+    //   this.form.kind = '';
+    //   this.form.credit = '';
+    //   this.form.unit = '';
+    //   this.form.teacher = '';
+    //
+    //   this.dialogFormVisible = true;
+    //   this.dialogStatus = "addCourse";
+    // },
+    // addCourse () {
+    //   this.$refs.course.validate((valid) => {
+    //     if (valid) {
+    //       this.$axios.post("/course/addCourse",this.form).then( (resp)=>{
+    //         if (resp) {
+    //           this.dialogFormVisible = false;
+    //           this.$message.success("添加成功！");
+    //           this.findAllCourses();
+    //         }
+    //       }).catch((error)=>{
+    //         this.$message({
+    //           message: '添加数据失败，原因是'+error.data.message,
+    //           type: 'error'
+    //         })
+    //       })
+    //     } else {
+    //       this.$message({
+    //         message: '请输入所有字段',
+    //         type: 'error'
+    //       })
+    //       return false;
+    //     }
+    //   });
+    // },
+    // editCourse () {
+    //   this.$axios.post("/course/updateCourse",this.form).then( (resp)=>{
+    //     this.dialogFormVisible = false;
+    //     this.$message.success("修改成功!");
+    //     this.findAllCourses();
+    //   }).catch( (error)=> {
+    //     this.$message({
+    //       message: '数据更新失败，原因是'+error.data.message,
+    //       type: 'error'
+    //     })
+    //   })
+    // }
   }
 }
 </script>

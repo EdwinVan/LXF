@@ -7,9 +7,10 @@
         <result column="bookinc" property="bookinc" jdbcType="VARCHAR"/>
         <result column="publisher" property="publisher" jdbcType="VARCHAR"/>
         <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="cid" property="cid" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Base_Column_List">
-        uid,bookname,bookinc,publisher,author
+        uid,bookname,bookinc,publisher,author,cid
     </sql>
 
     <select id="findAllBooks" resultType="com.example.second.entity.Book">
@@ -43,13 +44,14 @@
     </delete>
 
     <insert id="insert" parameterType="com.example.second.entity.Book">
-        insert into book (uid,name,introduction,kind,credit,unit,teacher,team,goal,textbook)
+        insert into book (uid,bookname,bookinc,publisher,author,cid)
         values (
                 #{uid,jdbcType=BIGINT},
                 #{bookname,jdbcType=VARCHAR},
                 #{bookinc,jdbcType=VARCHAR},
                 #{publisher,jdbcType=VARCHAR},
-                #{author,jdbcType=VARCHAR}
+                #{author,jdbcType=VARCHAR},
+                #{cid,jdbcType=BIGINT}
                 )
     </insert>
     <insert id="addBook" parameterType="com.example.second.entity.Book">
@@ -70,6 +72,9 @@
             <if test="author != null">
                 `author`,
             </if>
+            <if test="cid != null">
+                `cid`,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
 
@@ -88,6 +93,9 @@
             <if test="author != null">
                 #{author,jdbcType=VARCHAR},
             </if>
+            <if test="cid != null">
+                #{cid,jdbcType=BIGINT},
+            </if>
         </trim>
     </insert>
     <update id="updateBook" parameterType="com.example.second.entity.Book">
@@ -96,7 +104,8 @@
         set `bookname` = #{bookname,jdbcType=VARCHAR},
         `bookinc` = #{bookinc,jdbcType=VARCHAR},
         `publisher` = #{publisher,jdbcType=VARCHAR},
-        `author` = #{author,jdbcType=VARCHAR}
+        `author` = #{author,jdbcType=VARCHAR},
+        `cid` = #{cid,jdbcType=BIGINT}
         where `uid` = #{uid,jdbcType=BIGINT}
     </update>
 </mapper>
