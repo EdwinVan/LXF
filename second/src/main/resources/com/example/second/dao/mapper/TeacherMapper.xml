@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.second.dao.TeacherDao">
+    <resultMap id="BaseResultMap" type="com.example.second.entity.Teacher">
+        <id column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="nation" property="nation" jdbcType="VARCHAR"/>
+        <result column="party" property="party" jdbcType="VARCHAR"/>
+
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="speciality" property="speciality" jdbcType="VARCHAR"/>
+        <result column="qualification" property="qualification" jdbcType="VARCHAR"/>
+        <result column="workDate" property="workDate" jdbcType="DATE"/>
+
+        <result column="college" property="college" jdbcType="VARCHAR"/>
+        <result column="course" property="course" jdbcType="VARCHAR"/>
+
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+
+        <result column="hobby" property="hobby" jdbcType="VARCHAR"/>
+        <result column="rate" property="rate" jdbcType="DOUBLE"/>
+        <result column="ability" property="ability" jdbcType="DOUBLE"/>
+        <result column="evaluate" property="evaluate" jdbcType="VARCHAR"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        uid, name, age, sex
+    </sql>
+
+    <select id="findAllTeachers" resultType="com.example.second.entity.Teacher">
+        select * from teacher
+    </select>
+
+    <select id="findTeacherByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from teacher where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteTeachersByIds">
+        delete from teacher where uid in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getCountTeachers" resultType="java.lang.Integer">
+        select count(uid) as count from teacher
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from teacher
+        where uid = #{uid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteTeacherById" parameterType="java.lang.Long">
+        delete from teacher
+        where uid = #{uid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.second.entity.Teacher">
+        insert into teacher (uid, name, age,
+        sex,school,speciality,course)
+        values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER},
+        #{sex,jdbcType=VARCHAR})
+    </insert>
+    <insert id="addTeacher" parameterType="com.example.second.entity.Teacher">
+        insert into teacher
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                `uid`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="age != null">
+                `age`,
+            </if>
+            <if test="sex != null">
+                `sex`,
+            </if>
+            <if test="nation != null">
+                `nation`,
+            </if>
+            <if test="party != null">
+                `party`,
+            </if>
+
+            <if test="area != null">
+                `area`,
+            </if>
+            <if test="address != null">
+                `address`,
+            </if>
+            <if test="phone != null">
+                `phone`,
+            </if>
+            <if test="email != null">
+                `email`,
+            </if>
+
+
+            <if test="school != null">
+                `school`,
+            </if>
+            <if test="speciality != null">
+                `speciality`,
+            </if>
+            <if test="qualification != null">
+                `qualification`,
+            </if>
+            <if test="workDate != null">
+                `workDate`,
+            </if>
+            <if test="college != null">
+                `college`,
+            </if>
+            <if test="course != null">
+                `course`,
+            </if>
+            <if test="title != null">
+                `title`,
+            </if>
+            <if test="hobby != null">
+                `hobby`,
+            </if>
+            <if test="rate != null">
+                `rate`,
+            </if>
+            <if test="ability != null">
+                `ability`,
+            </if>
+            <if test="evaluate != null">
+                `evaluate`,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="nation != null">
+                #{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="party != null">
+                #{party,jdbcType=VARCHAR},
+            </if>
+            <if test="area != null">
+                #{area,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=INTEGER},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="school != null">
+                #{school,jdbcType=VARCHAR},
+            </if>
+            <if test="speciality != null">
+                #{speciality,jdbcType=DATE},
+            </if>
+            <if test="qualification != null">
+                #{qualification,jdbcType=DATE},
+            </if>
+            <if test="workDate != null">
+                #{workDate,jdbcType=VARCHAR},
+            </if>
+            <if test="college != null">
+                #{college,jdbcType=VARCHAR},
+            </if>
+            <if test="course != null">
+                #{course,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="hobby != null">
+                #{hobby,jdbcType=VARCHAR},
+            </if>
+            <if test="rate != null">
+                #{rate,jdbcType=DOUBLE},
+            </if>
+            <if test="ability != null">
+                #{ability,jdbcType=DOUBLE},
+            </if>
+            <if test="evaluate != null">
+                #{evaluate,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert>
+
+    <update id="updateTeacher" parameterType="com.example.second.entity.Teacher">
+        update teacher
+        set `name` = #{name,jdbcType=VARCHAR},
+        `age` = #{age,jdbcType=INTEGER},
+        `sex` = #{sex,jdbcType=VARCHAR},
+        `nation` = #{nation,jdbcType=VARCHAR},
+        `party` = #{party,jdbcType=VARCHAR},
+        `area` = #{area,jdbcType=VARCHAR},
+        `address` = #{address,jdbcType=VARCHAR},
+        `phone` = #{phone,jdbcType=INTEGER},
+        `email` = #{email,jdbcType=VARCHAR},
+        `school` = #{school,jdbcType=VARCHAR},
+        `speciality` = #{speciality,jdbcType=VARCHAR},
+        `qualification` = #{qualification,jdbcType=VARCHAR},
+        `workDate` = #{workDate,jdbcType=DATE},
+        `college` = #{college,jdbcType=VARCHAR},
+        `course` = #{course,jdbcType=VARCHAR},
+        `title` = #{title,jdbcType=VARCHAR},
+        `hobby` = #{hobby,jdbcType=VARCHAR},
+        `rate` = #{rate,jdbcType=DOUBLE},
+        `ability` = #{ability,jdbcType=DOUBLE},
+        `evaluate` = #{evaluate,jdbcType=VARCHAR}
+        where `uid` = #{uid,jdbcType=BIGINT}
+    </update>
+</mapper>

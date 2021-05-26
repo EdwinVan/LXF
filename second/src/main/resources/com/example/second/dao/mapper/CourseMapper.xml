@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.second.dao.CourseDao">
+    <resultMap id="BaseResultMap" type="com.example.second.entity.Course">
+        <id column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="introduction" property="introduction" jdbcType="VARCHAR"/>
+        <result column="kind" property="kind" jdbcType="VARCHAR"/>
+        <result column="credit" property="credit" jdbcType="DOUBLE"/>
+        <result column="unit" property="unit" jdbcType="VARCHAR"/>
+        <result column="teacher" property="teacher" jdbcType="VARCHAR"/>
+        <result column="team" property="team" jdbcType="VARCHAR"/>
+        <result column="goal" property="goal" jdbcType="VARCHAR"/>
+        <result column="textbook" property="textbook" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        uid,name,introduction,kind,credit,unit,teacher,team,goal,textbook
+    </sql>
+
+    <select id="findAllCourses" resultType="com.example.second.entity.Course">
+        select * from course
+    </select>
+
+    <select id="findCourseByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from course where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteCoursesByIds">
+        delete from course where uid in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getCountCourses" resultType="java.lang.Integer">
+        select count(uid) as count from course
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from course
+        where uid = #{uid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteCourseById" parameterType="java.lang.Long">
+        delete from course
+        where uid = #{uid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.second.entity.Course">
+        insert into course (uid,name,introduction,kind,credit,unit,teacher,team,goal,textbook)
+        values (
+                #{uid,jdbcType=BIGINT},
+                #{name,jdbcType=VARCHAR},
+                #{introduction,jdbcType=VARCHAR},
+                #{kind,jdbcType=VARCHAR},
+                #{credit,jdbcType=DOUBLE},
+                #{unit,jdbcType=VARCHAR},
+                #{teacher,jdbcType=VARCHAR},
+                #{team,jdbcType=VARCHAR},
+                #{goal,jdbcType=VARCHAR},
+                #{textbook,jdbcType=VARCHAR}
+                )
+    </insert>
+    <insert id="addCourse" parameterType="com.example.second.entity.Course">
+        insert into course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                `uid`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="introduction != null">
+                `introduction`,
+            </if>
+            <if test="kind != null">
+                `kind`,
+            </if>
+            <if test="credit != null">
+                `credit`,
+            </if>
+            <if test="unit != null">
+                `unit`,
+            </if>
+            <if test="teacher != null">
+                `teacher`,
+            </if>
+            <if test="team != null">
+                `team`,
+            </if>
+            <if test="goal != null">
+                `goal`,
+            </if>
+            <if test="textbook != null">
+                `textbook`,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="kind != null">
+                #{kind,jdbcType=VARCHAR},
+            </if>
+            <if test="credit != null">
+                #{credit,jdbcType=DOUBLE},
+            </if>
+            <if test="unit != null">
+                #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="teacher != null">
+                #{teacher,jdbcType=VARCHAR},
+            </if>
+            <if test="goal != null">
+                #{goal,jdbcType=VARCHAR},
+            </if>
+            <if test="team != null">
+                #{team,jdbcType=VARCHAR},
+            </if>
+            <if test="textbook != null">
+                #{textbook,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert>
+
+    <update id="updateCourse" parameterType="com.example.second.entity.Course">
+
+        update course
+        set `name` = #{name,jdbcType=VARCHAR},
+        `introduction` = #{introduction,jdbcType=VARCHAR},
+        `kind` = #{kind,jdbcType=VARCHAR},
+        `credit` = #{credit,jdbcType=DOUBLE},
+        `unit` = #{unit,jdbcType=VARCHAR},
+        `teacher` = #{teacher,jdbcType=VARCHAR},
+        `goal` = #{goal,jdbcType=VARCHAR},
+        `team` = #{team,jdbcType=VARCHAR},
+        `textbook` = #{textbook,jdbcType=VARCHAR}
+        where `uid` = #{uid,jdbcType=BIGINT}
+    </update>
+</mapper>
