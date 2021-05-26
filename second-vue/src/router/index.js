@@ -9,11 +9,13 @@ import Index from '../views/public/Index'
 import Main from '../views/public/Main'
 import Book from '../views/Book'
 import Announcement from '../views/Announcement'
+
 import Introduction from "../views/public/Introduction";
 import Target from "../views/public/target";
 import Team from "../views/public/team";
 import Textbook from "../views/public/textbook";
 import News from "../views/public/news";
+
 
 
 Vue.use(VueRouter);
@@ -61,8 +63,6 @@ const routes = [
     name: 'News',
     component: News,
   },
-
-
   {
     path: '/login',
     name: 'Login',

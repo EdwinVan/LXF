@@ -76,6 +76,7 @@
           </div>
           <div class="IndexContent">
               <p>{{courses[0].goal}}</p>
+
           </div>
         </div>
       </div>
@@ -144,6 +145,7 @@ export default {
       search: '',
     };
   },
+
 
   created() {
     this.findAllCourses();

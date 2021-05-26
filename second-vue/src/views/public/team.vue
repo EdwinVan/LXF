@@ -63,7 +63,7 @@
                 <el-divider></el-divider>
               </div>
               <div class="teacherContent">
-                
+
               </div>
             </div>
           </div>
